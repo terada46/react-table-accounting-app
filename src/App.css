@@ -1,38 +1,157 @@
-.App {
-  text-align: center;
+body { 
+  font-size: 1em; 
+  font-weight: 400;
+  line-height: 1.5;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+Form {
+  margin-bottom: 1em;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0.3em 0.6em;
 }
 
-.App-link {
-  color: #61dafb;
+#table-container {
+  margin: 30px auto;
+  max-width: 790px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.filter {
+  width: 7em;
+  margin-bottom: 1em;
+  display: inline-block;
+}
+
+.col-th {
+  width: 25%;
+}
+
+input[type="number"] {
+  width: 3em;
+}
+
+#pagination {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#pageButtons {
+  width: 30%;
+  min-width: 252px;
+}
+
+#pageInput {
+  width: 30%;
+  min-width: 252px;
+}
+
+#current-month {
+  font-size: 0.9em;
+}
+
+#current-month>span:first-child {
+  margin-right: 0.9em;
+}
+
+#current-month>span {
+  margin-right: 0.7em;
+}
+
+p.message {
+  margin-top: 5px;
+  color: #bf1650;
+  font-size: 0.3em;
+}
+
+p.message::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+@media screen {
+  #table-container {
+    width: 85%;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media screen and (max-width: 768px) {
+  #table-container {
+    width: 90%;
   }
+}
+
+@media screen and (max-width: 753px) {
+  .col-sm-8 {
+    max-width: 60.333%;
+  }
+}
+
+@media screen and (max-width: 723px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .form-row>[class*=col-]:not(:first-of-type) {
+    max-width: 100%;
+    min-height: 70px;
+    margin-bottom: 0;
+  }
+  label.col {
+    max-width: 15%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  #header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0.6em;
+  }
+}
+@media screen and (max-width: 550px) {
+  #pagination {
+    flex-direction: column;
+  }
+  #pageInput {
+    margin-top: 0.8em;
+  }
+}
+
+#inputForm {
+  margin-bottom: 1em;
+} 
+.form-row {
+  min-height: 86px;
+}
+
+
+
+#triangle {
+  display: inline-block;
+  margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 7px 7px 7px;
+  border-color: transparent transparent #6c757d transparent;
+  line-height: 0px;
+  _border-color: #ffffff #ffffff #6c757d #ffffff;
+  _filter: progid:DXImageTransform.Microsoft.Chroma(color='#ffffff');
+}
+
+#triangle-reverse {
+  display: inline-block;
+  margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 7px 0 7px;
+  border-color: #6c757d transparent transparent transparent;
+  line-height: 0px;
+  _border-color: #6c757d #ffffff #ffffff #ffffff;
+  _filter: progid:DXImageTransform.Microsoft.Chroma(color='#ffffff');
 }
