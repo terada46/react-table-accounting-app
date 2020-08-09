@@ -3,15 +3,14 @@ import React, { createContext, useContext, useState, useMemo } from 'react';
 const useApi = (apiFactory, initialState) => {
     let [ state, setState ] = useState(initialState);
     return useMemo(() => apiFactory({ state, setState }), [
-      state,
-      setState,
-      apiFactory
+        state,
+        setState,
+        apiFactory
     ]);
-  };
+};
   
-  const createStore = (apiFactory, initialState) => {
+const createStore = (apiFactory, initialState) => {
     const StoreContext = createContext();
-
     const StoreProvider = props => {
         let store = useApi(apiFactory, initialState);
         return (
@@ -24,8 +23,8 @@ const useApi = (apiFactory, initialState) => {
     let useStore = () => {
         return useContext(StoreContext);
     }
-    
-    return [ StoreProvider, useStore ]
-  };
 
-  export default createStore;
+    return [ StoreProvider, useStore ]
+};
+
+export default createStore;
