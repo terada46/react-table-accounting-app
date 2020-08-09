@@ -1,6 +1,6 @@
 import React, { useState, forwardRef } from 'react';
 import { Button, Form, Col } from 'react-bootstrap';
-import { getCategories } from './GetData';
+import { getCategories } from '../stores/GetData';
 import { useForm } from 'react-hook-form';
 import DatePicker, { registerLocale } from "react-datepicker";
 import zhCN from 'date-fns/locale/zh-CN';

@@ -1,74 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
     useTable, 
     usePagination, 
     useGlobalFilter, 
-    useAsyncDebounce, 
     useSortBy 
 } from 'react-table';
-import { Table, Button, Form, Badge } from 'react-bootstrap';
-
-const GlobalFilter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => { 
-    const [value, setValue] = useState(globalFilter);
-    const onChange = useAsyncDebounce(value => {
-        setGlobalFilter(value || undefined)
-    }, 200);
-    const options = React.useMemo(() => {
-        const options = new Set();
-        preGlobalFilteredRows.forEach(row => {
-            let value, regexp = /^\d{4}年\d{1,2}月/;
-            if (regexp.test(row.values.date)) {
-                value = row.values.date.match(regexp)[0]
-            } else {
-                value = row.values.date
-            }
-            options.add(value);
-            });
-        return [...options.values()]
-    }, [preGlobalFilteredRows]);
-
-    return (
-        <div className="filter">
-            <Form.Control 
-                as="select" 
-                custom
-                size="sm"
-                value={value}
-                onChange={e => {
-                setValue(e.target.value);
-                onChange(e.target.value);
-                }}
-            >
-                <option value="">所有</option>
-                {options.map((option, i) => (
-                    <option key={i} value={option || ''}>
-                        {option}
-                    </option>
-                ))}
-            </Form.Control>
-        </div>
-    )
-};
-  
-const IncomeAndExpense = ({ rows, globalFilter }) => {
-    let income = 0, expense = 0;
-    rows.forEach(cell => {
-        const { amount, type } = cell.values;
-        type === "支出" ? expense += Number(amount) : income += Number(amount);
-    });
-    return (
-        <div id="current-month">
-            { globalFilter === undefined 
-                ? <span>所有 合计</span> 
-                : <span>{`${globalFilter} 合计`}</span> 
-            }
-            <Badge variant="success">收入</Badge>
-            <span>{`￥${parseFloat(income).toFixed(2)}`}</span>
-            <Badge variant="warning">支出</Badge>
-            <span>{`￥${parseFloat(expense).toFixed(2)}`}</span>
-        </div>
-    )
-}
+import { Table, Button } from 'react-bootstrap';
+import GlobalFilter from './GlobalFilter';
+import IncomeAndExpense from './IncomeAndExpense';
   
 const ReactTable = ({ columns, data }) => {
     const defaultSortBy = React.useMemo(() => [
